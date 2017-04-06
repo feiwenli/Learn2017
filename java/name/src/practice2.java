@@ -53,6 +53,7 @@ public class practice2 {
 		System.out.println("smallPrimes[1]="+smallPrimes[1]);
 		
 		//数组拷贝
+		@SuppressWarnings("unused")
 		int [] copySmallPrimes =Arrays.copyOf(smallPrimes,smallPrimes.length);
 		//增加数组的大小
 		System.out.println("数组增加前的长度："+smallPrimes.length);

@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Mangae_2 {
 
+	@SuppressWarnings("resource")
 	public static void main(String[] args) {
 
 		Sstudent student_1,student_2,student_3;
@@ -22,12 +23,14 @@ public class Mangae_2 {
 			score_1=Double.parseDouble(student_1.NameScore[j][3]);
 			score_2=Double.parseDouble(student_2.NameScore[j][3]);
 			score_3=Double.parseDouble(student_3.NameScore[j][3]);		
+			@SuppressWarnings("unused")
 			Calculate course_1;
 			course_1=new Calculate(score_1,score_2,score_3,student_1.NameScore[j][0],student_1.NameScore[j][4],student_2.NameScore[j][4],student_3.NameScore[j][4]);			
 			double score_4,score_5,score_6;
 			score_4=Double.parseDouble(postgrauduate_1.NameScore[j][3]);
 			score_5=Double.parseDouble(postgrauduate_2.NameScore[j][3]);
 			score_6=Double.parseDouble(postgrauduate_3.NameScore[j][3]);	
+			@SuppressWarnings("unused")
 			Calculate course_11;
 			course_11=new Calculate(score_4,score_5,score_6,postgrauduate_1.NameScore[j][0],postgrauduate_1.NameScore[j][4],postgrauduate_2.NameScore[j][4],postgrauduate_3.NameScore[j][4]);
 		}
@@ -167,7 +170,7 @@ class Postgrauduate extends Sstudent
 	public void Show()
 	{
 		System.out.println("姓名："+name+"  性别："+sex+"  学校："+school+"  专业："+major+"  学号："+studentNum+"  导师："+tutor+"  生源地："+origin);
-		int i=0,j=0;
+		int i=0;
 		for(i=0;i<1;i++){
 				System.out.println("课程："+NameScore[i][0]);
 				System.out.println("序号："+NameScore[i][1]);

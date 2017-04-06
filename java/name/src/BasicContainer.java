@@ -1,12 +1,11 @@
 
 
-import java.nio.IntBuffer;
 import java.util.Collection;
 import java.util.HashSet;
 
 public class BasicContainer {
 	public static void main(String[]args){
-		Collection c = new HashSet();
+		Collection<Object> c = new HashSet<Object>();
 		c.add("hello");
 		c.add(new Name("fan","wu"));
 		c.add(new Integer(100));
@@ -33,6 +32,7 @@ class Name {
 	 */
 	public boolean equals(Object obj){
 		if (obj instanceof Name){
+			@SuppressWarnings("unused")
 			Name name = (Name) obj;
 			return (FirstName.equals(FirstName)&&(LastName.equals(LastName)));
 		}
