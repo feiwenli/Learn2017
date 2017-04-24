@@ -2,6 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.fei.test">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+
+    <span style="font-size:14px;">out.write((data + '\n').getBytes("GBK"));</span>
+    <span style="font-size:14px;">writer.write(me.getBytes("utf-8"));</span>
+    <span style="font-size:14px;">textView.append("服务器：" + b + '\n')；</span>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"

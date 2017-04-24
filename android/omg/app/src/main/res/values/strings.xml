@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">omg</string>
-    <string name="hello">Hello World!</string>
+    <string name="hello">start connection!</string>
+    <string name="connect">connect</string>
+    <string name="send">send</string>
+    <string name="input">input</string>
 </resources>

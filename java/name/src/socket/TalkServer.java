@@ -6,8 +6,9 @@ import java.net.*;
 public class TalkServer {
 	public static void main(String [] args){
 		try{
-			ServerSocket server = new ServerSocket(8888);
+			ServerSocket server = new ServerSocket(30000);
 			Socket s = server.accept();
+			System.out.println("OK!");
 			String line;
 			BufferedReader is = new BufferedReader(new InputStreamReader(s.getInputStream()));
 			PrintWriter os = new PrintWriter(s.getOutputStream());

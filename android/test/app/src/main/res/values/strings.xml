@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">test</string>
+    <string name="connect">connect</string>
+    <string name="send">send</string>
+    <string name="hello">hello server!</string>
+    <string name="enter">enter</string>
+    <string name="action_settings">action setting</string>
 </resources>

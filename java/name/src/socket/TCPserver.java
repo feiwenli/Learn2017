@@ -10,9 +10,10 @@ public class TCPserver {
 	public static void main(String [] args)throws Exception{
 		try{
 			@SuppressWarnings("resource")
-			ServerSocket ss = new ServerSocket(6666);
+			ServerSocket ss = new ServerSocket(30000);
 			while(true){
 				Socket s = ss.accept();		//阻塞式
+				System.out.println("connected!");
 				DataInputStream dis = new DataInputStream(s.getInputStream());
 				System.out.println(dis.readUTF());  	//阻塞式，效率低；在你通信的过程中，另外一个客户端不能连接
 				dis.close();

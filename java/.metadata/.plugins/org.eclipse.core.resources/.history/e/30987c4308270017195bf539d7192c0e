@@ -1,0 +1,47 @@
+package socket;
+
+import java.io.*;
+import java.net.ServerSocket;  
+import java.net.Socket;  
+ 
+  
+public class AndroidSocket {  
+  
+  
+    public static void main(String[] args) throws IOException {  
+        AndroidRunnable ar = new AndroidRunnable();
+        Thread t = new Thread(ar);
+        t.start();
+    }  
+}
+
+class AndroidRunnable implements Runnable {
+	
+	@Override
+	public void run() {
+		ServerSocket serversocket = null;
+		try{
+			serversocket = new ServerSocket(9843);
+			Socket socket = serversocket.accept();
+			InputStream inputstream = socket.getInputStream();
+			byte buffer [] = new byte[1024*4];
+			int temp = 0;
+			while((temp = inputstream.read(buffer))!= -1){
+				System.out.println(new String(buffer,0,temp));
+			}
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		finally{	
+			try{
+				serversocket.close();
+			}catch (IOException e){
+				e.printStackTrace();
+			}
+		}
+	}  
+	  
+   
+}  
+
+    

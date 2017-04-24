@@ -6,7 +6,7 @@ import java.net.*;
 public class TalkClient {
 	public void main(String[]args){
 		try{
-			Socket s = new Socket("127.0.0.1",8888);
+			Socket s = new Socket("127.0.0.1",6668);
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));   //
 			PrintWriter pw = new PrintWriter(s.getOutputStream());
 			BufferedReader bbrr = new BufferedReader(new InputStreamReader(s.getInputStream()));   //server in

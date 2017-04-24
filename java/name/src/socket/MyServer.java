@@ -1,0 +1,119 @@
+package socket;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class MyServer implements ActionListener {
+
+	/**
+	 * 服务器端
+	 * */
+	private Window window;
+	private ServerSocket server;
+	private static Socket socket;
+	private JButton button;
+	private static JTextArea area;
+	private JTextField field;
+//	private BufferedWriter writer;
+	private OutputStream writer;
+	private static BufferedReader reader;
+
+	// 存放TextField中的字符串
+	private static String fromClient;
+
+	public MyServer() {
+
+		window = new Window("服务器：");
+		button = window.getButton();
+		area = window.getJTextArea();
+		field = window.getTextField();
+		button.addActionListener(this);
+
+		try {
+			//监听端口5000
+			server = new ServerSocket(30000);
+			System.out.println("服务器已创建，正在等待客户端连接。。。");
+			socket = server.accept();
+			System.out.println("客户端已连接");
+			//打开输入输出流
+			writer = socket.getOutputStream();
+			reader = new BufferedReader(new InputStreamReader(
+					socket.getInputStream()));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			try {
+				socket.close();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+	}
+
+	public static void main(String[] args) throws InterruptedException {
+		new MyServer();
+		// 创建线程去读取客户端发来的数据
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				try {
+					while (socket != null) {
+						fromClient = reader.readLine();
+						area.append("客户端：" + fromClient + '\n');
+					}
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					try {
+						reader.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+
+			}
+		}).start();
+	}
+
+	/**
+	 * 按钮监听方法，点击按钮时触发该方法。
+	 * */
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String me = field.getText().toString() + '\n';
+		area.append("服务器：" + me);
+		field.setText("");
+		try {
+			writer.write(me.getBytes("utf-8"));
+			//刷新输出流
+			writer.flush();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			try {
+				writer.close();
+			} catch (IOException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+		}
+
+	}
+}
